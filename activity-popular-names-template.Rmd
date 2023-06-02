@@ -1,11 +1,11 @@
 ---
 title: 'Activity: Popular Names'
-author: "YOUR NAME HERE"
-date: "DUE DATE"
+author: "Madeline Mucciolo"
+date: "June 5 2023"
 output:
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
   pdf_document: default
 ---
 
@@ -28,6 +28,12 @@ Assignment is worth a total of 10 points
 
 
 # Set Up
+```{r}
+install.packages("devtools")
+devtools::install_github("mdbeckman/dcData")
+library(dcData)
+```
+
 
 ```{r, message = F, warning = F}
 # load necessary packages
@@ -51,24 +57,23 @@ For steps 5-7, pick any FIVE names you wish. I choose Arnaldo, Ahmid, Nicho, Jen
 
 *Examine the data you have at hand - for this project the data are the ones available in the `BabyNames` data set. Use at least 2 different functions to examine your data. Then answer the questions: What are the variables are available? What is a case?*
 
-My answer here.... 
-
 ```{r}
-## Look at the data a few different ways (see Ch 9 for more).
-
-
+head(BabyNames)
+summary(BabyNames)
 ```
+- The available variables are name, sex, count, and year.
+- Each case is represented by a name for a sex in a year.
+
 
 ### Step 2
-
-[This should be done by hand on paper, nothing to show in the HTML doc]
+- On paper.
 
 
 ### Step 3 
 
 ##### What variable(s) from the raw data table do not appear at all in the graph?
 
-My answer here.... 
+- 
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
