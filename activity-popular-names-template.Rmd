@@ -78,7 +78,7 @@ sample(BabyNames, 15)
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
-- The ***summary()*** function tells us that the min number in the *count* variable is 5, while the max is close to 10,000. Because of this, I choose to
+- The ***total*** variable in the graph is similar to the count variable, except the total variable disregards sex.
 
 
 ### Step 4
@@ -111,13 +111,13 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 ### Step 7
 
 ```{r}
-BabyNamesGraph <-
+GlyphReadyForm <-
   BabyNames %>%
   filter(name == 'Elizabeth' | name =='Josh' | name == 'Jodie' | name == 'Mary' | name == 'Andy') %>%
   group_by(year, name) %>%
   summarise(total = sum(count))
   
-BabyNamesGraph
+GlyphReadyForm
 ```
 
 
@@ -138,8 +138,6 @@ If you prepared your `GlyphReadyForm` data set correctly, you should just be abl
 
 
 ```{r}
-GlyphReadyForm <- BabyNamesGraph
-
 GlyphReadyForm %>%
   ggplot(aes(x = year, y = total, group = name)) + 
   geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
