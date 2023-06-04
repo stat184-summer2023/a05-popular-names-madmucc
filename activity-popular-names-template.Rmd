@@ -101,7 +101,8 @@ sample(BabyNames, 15)
 ### Step 5
 
 
-Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
+Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).
+- done below
 
 
 ### Step 6
