@@ -60,6 +60,7 @@ For steps 5-7, pick any FIVE names you wish. I choose Arnaldo, Ahmid, Nicho, Jen
 ```{r}
 head(BabyNames)
 summary(BabyNames)
+sample(BabyNames, 15)
 ```
 - The available variables are name, sex, count, and year.
 - Each case is represented by a name for a sex in a year.
@@ -73,28 +74,28 @@ summary(BabyNames)
 
 ##### What variable(s) from the raw data table do not appear at all in the graph?
 
-- 
+- In order to avoid an over clustered graph, I choose to disregard the sex variable. If I end up adding that variable back into the final graph, I would use different a facet for each sex.
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
-My answer here.... 
+- The ***summary()*** function tells us that the min number in the *count* variable is 5, while the max is close to 10,000. Because of this, I choose to
 
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
-My answer here.... 
+- Yes, for the cases, I only took cases with the names: ['Elizabeth', 'Josh', 'Jodie', 'Mary', 'Andy'].
 
 
 ##### Have cases been grouped and summarized within groups in any way?
 
-My answer here.... 
+- Since I am only worried about the total number of names in each year, not the number of names for each sex, I grouped the cases by name & year. This way, each case is identified by the name in a year regardless of sex.
 
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
-My answer here.... 
+- There is a new variable ***total***. This variable counts the total number of names per year, regardless of sex.
 
 
 ### Step 5
@@ -110,12 +111,13 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 ### Step 7
 
 ```{r}
-## Create my glyph ready data set here
-
-
-# inspect the result
-
-
+BabyNamesGraph <-
+  BabyNames %>%
+  filter(name == 'Elizabeth' | name =='Josh' | name == 'Jodie' | name == 'Mary' | name == 'Andy') %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count))
+  
+BabyNamesGraph
 ```
 
 
@@ -136,9 +138,14 @@ If you prepared your `GlyphReadyForm` data set correctly, you should just be abl
 
 
 ```{r}
-#My code here 
+GlyphReadyForm <- BabyNamesGraph
 
-
+GlyphReadyForm %>%
+  ggplot(aes(x = year, y = total, group = name)) + 
+  geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
+  ylab("Popularity") + 
+  xlab("Year") +
+  ggtitle("Popularity of Names Over Time")
 ```
 
 
